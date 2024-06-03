@@ -9,6 +9,7 @@ import com.usth.edu.Database.AppDatabase;
 import com.usth.edu.Database.DAO.JobDAO;
 import com.usth.edu.Model.Job;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -69,6 +70,14 @@ public class JobRepository {
     }
     public List<Job> getListAboutTime(Date start, Date end) {
         return jobDAO.getListJobAboutTimeEndDate(start,end);
+    }
+
+    public List<Job> getListJobWillStartByMinute(int minute) {
+        Calendar calendar = Calendar.getInstance();
+        Date start = calendar.getTime();
+        calendar.add(Calendar.MINUTE, minute);
+        Date end = calendar.getTime();
+        return jobDAO.getJobWillStartByMinute(start, end);
     }
 
     public Job getById(int id) {

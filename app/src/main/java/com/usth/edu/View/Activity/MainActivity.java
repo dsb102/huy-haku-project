@@ -14,6 +14,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.viewpager2.widget.ViewPager2;
+import androidx.work.PeriodicWorkRequest;
+import androidx.work.WorkManager;
 
 import com.usth.edu.Library.DialogExtension;
 import com.usth.edu.Library.Extension;
@@ -27,6 +29,8 @@ import com.usth.edu.ViewModel.NotificationViewModel;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
+import java.util.concurrent.TimeUnit;
+
 public class MainActivity extends AppCompatActivity {
     private BottomNavigationView bottomMenu;
     private JobViewModel jobViewModel;
@@ -37,13 +41,18 @@ public class MainActivity extends AppCompatActivity {
     private MenuItem addition_menu;
     private MenuItem notificationManagement;
 
-    private ChatGptCaller chatGpt = new ChatGptCaller();
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         init();
+        setJobPeriodic();
+    }
+
+    private void setJobPeriodic() {
+        PeriodicWorkRequest workRequest = new PeriodicWorkRequest.Builder(MyWorker.class, 5, TimeUnit.MINUTES)
+                .build();
+        WorkManager.getInstance(this).enqueue(workRequest);
     }
 
     @Override
@@ -156,6 +165,5 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         this.invalidateOptionsMenu();
-
     }
 }

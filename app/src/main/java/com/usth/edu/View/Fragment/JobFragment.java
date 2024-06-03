@@ -1,6 +1,7 @@
 package com.usth.edu.View.Fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,6 +20,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.usth.edu.Library.GeneralData;
 import com.usth.edu.Model.Job;
 import com.usth.edu.R;
+import com.usth.edu.View.Activity.AddJobActivity;
 import com.usth.edu.View.Adapter.JobAdapter;
 import com.usth.edu.ViewModel.JobViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -58,6 +60,15 @@ public class JobFragment extends Fragment {
         TextView tv_onGoing = v.findViewById(R.id.tv_ongoing);
         TextView tv_finish = v.findViewById(R.id.tv_finish);
         TextView tv_total = v.findViewById(R.id.tv_total);
+        btn_Add_New_Job = v.findViewById(R.id.add_new_job_detail);
+
+        btn_Add_New_Job.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), AddJobActivity.class);
+                startActivity(intent);
+            }
+        });
 
         if(jobs == null )
             Toast.makeText(mContext,"Đã xảy ra lỗi vui lòng kiểm tra lại",Toast.LENGTH_LONG).show();

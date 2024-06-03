@@ -45,7 +45,11 @@ public interface JobDAO {
     @Query("SELECT * FROM JOB WHERE CategoryID = :categoryId ORDER BY Status ASC,Priority DESC,EndDate ASC,StartDate ASC")
     List<Job> getJobByCategory(int categoryId);
 
-    @Query("SELECT COUNT(1) FROM JOB WHERE Status =:status AND EndDate >=:start AND EndDate<=:end")
+    @TypeConverters(DateConvertor.class)
+    @Query("SELECT * FROM JOB WHERE StartDate >= :start AND StartDate <= :end ORDER BY Priority DESC")
+    List<Job> getJobWillStartByMinute(Date start, Date end);
+
+    @Query("SELECT COUNT(1) FROM JOB WHERE Status =:status AND EndDate >=:start AND EndDate<:end")
     @TypeConverters(DateConvertor.class)
     int getRowCountByStatusMonth(int status, Date start, Date end);
 

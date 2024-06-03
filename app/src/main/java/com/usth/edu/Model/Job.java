@@ -53,6 +53,9 @@ public class Job implements Serializable {
     @ColumnInfo(name = "Status")
     private int status = GeneralData.STATUS_COMING;
 
+    @ColumnInfo(name = "Suggestion")
+    private String suggestion;
+
     @Ignore
     public Job(int categoryId, @NonNull String name, @NonNull Date startDate, @NonNull Date endDate, String description) {
         this.categoryId = categoryId;
@@ -167,5 +170,13 @@ public class Job implements Serializable {
 
     public void setStatus(int status) {
         this.status = status;
+    }
+
+    public String getSuggestion() {
+        return suggestion;
+    }
+
+    public void setSuggestion(String suggestion) {
+        this.suggestion = suggestion;
     }
 }

@@ -9,6 +9,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -20,13 +22,25 @@ import okhttp3.Response;
 
 public class ChatGptCaller {
 
+    public interface OnCallerSuccess {
+        void call(String result);
+    }
+
+    private static final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
     private static final String API_KEY = "sk-proj-dAoJrkWtCR0udk5KFwHsT3BlbkFJaBuhWNPAjexGYXtsyoS1";
 
     public static final MediaType JSON
             = MediaType.get("application/json; charset=utf-8");
     OkHttpClient client = new OkHttpClient();
 
-    public void callChatGpt(String question) {
+    public static String getPrompt(Date startDate, Date endDate, String title, String description) {
+        return "Tôi đang chuẩn bị có một công việc vào lúc " + sdf.format(startDate) + " đến lúc " + sdf.format(endDate) + ", cụ thể tên công việc: " + title + " và mô tả cụ th của công việc: " + description +
+                ". Tôi nên chuẩn bị những gì cho công việc này, hãy giúp tôi mô tả ngắn gọn.";
+    }
+
+    public void callChatGpt(Date startDate, Date endDate, String title, String description, OnCallerSuccess callerSuccess) {
+        String question = getPrompt(startDate, endDate, title, description);
         JSONObject jsonBody = new JSONObject();
         JSONArray jsonArray = new JSONArray();
         JSONObject message = new JSONObject();
@@ -67,13 +81,16 @@ public class ChatGptCaller {
                         jsonObject = new JSONObject(response.body().string());
                         JSONArray jsonArray = jsonObject.getJSONArray("choices");
                         String result = jsonArray.getJSONObject(0).getJSONObject("message").getString("content");
+                        callerSuccess.call(result.trim());
                         Log.d("SOBIN SUCCESS", result.trim());
                     } catch (JSONException e) {
+                        callerSuccess.call(description);
                         e.printStackTrace();
                     }
 
 
                 } else {
+                    callerSuccess.call(description);
                     Log.d("SOBIN ERROR", "Failed to load response due to " + response);
                 }
             }

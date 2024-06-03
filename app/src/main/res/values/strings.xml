@@ -147,8 +147,7 @@
     <string name="notification_new">New</string>
     <string name="notification_old">Old</string>
     <string name="notification_btn_remove">Remove This Notification</string>
-
-
+    <string name="add_job_description">Add Job</string>
 
 
 </resources>

@@ -175,7 +175,6 @@ public class JobDetailActivity extends AppCompatActivity {
             }
         });
         btn_Add_New_Job_detail.setOnClickListener(view -> {
-            Log.d("SOBIN", "Log set onclick new job");
             AddJobDetail();
         });
         if (isRunning) {
@@ -246,10 +245,12 @@ public class JobDetailActivity extends AppCompatActivity {
     }
 
     private void AddJobDetail() {
-        Intent intent = new Intent(getApplicationContext(), AddJobActivity.class);
+        Intent intent = new Intent(getApplicationContext(), AddJobDetailActivity.class);
 //        startActivity(intent);
 //        Intent intent = new Intent(getApplicationContext(), AddJobDetailActivity.class);
-        intent.putExtra("jobId", job.getId());
+        if (job != null) {
+            intent.putExtra("jobId", job.getId());
+        }
         startActivity(intent);
     }
 
