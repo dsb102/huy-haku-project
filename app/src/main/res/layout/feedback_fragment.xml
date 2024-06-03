@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:gravity="center_horizontal"
+    android:background="@color/splat_text_color">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Email of Admin:"
+        android:textSize="35dp"
+        android:textStyle="bold"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="@color/bg_color_2"
+        android:paddingBottom="4dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="huydd.ba11-051@st.usth.edu.vn"
+        android:textStyle="bold"
+        android:textSize="25dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="@color/bg_color_2"
+        android:paddingBottom="24dp" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="We're glad you've enjoyed the SmartPlanner application. If you have any comments, please respond via the Admin email address above."
+        android:textSize="23dp"
+
+        />
+
+
+    <!-- Thêm các thành phần khác cho fragment ở đây -->
+
+</LinearLayout>
