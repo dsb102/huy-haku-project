@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 import androidx.room.TypeConverters;
 import com.usth.edu.Database.DateConvertor;
@@ -24,6 +25,9 @@ public class NotificationModel implements Serializable {
     @ColumnInfo(name = "JobID", index = true)
     private int jobId;
 
+    @ColumnInfo(name = "Message")
+    private String message;
+
     @ColumnInfo(name = "statusJob")
     private int statusJob;
 
@@ -40,6 +44,15 @@ public class NotificationModel implements Serializable {
         this.statusJob =statusJob;
         this.dateOfRecord=dateOfRecord;
         this.status =status;
+    }
+
+    @Ignore
+    public NotificationModel(int jobId, String message, int statusJob, @NonNull Date dateOfRecord, String status) {
+        this.jobId = jobId;
+        this.message = message;
+        this.statusJob = statusJob;
+        this.status = status;
+        this.dateOfRecord = dateOfRecord;
     }
 
     @NonNull
@@ -81,5 +94,13 @@ public class NotificationModel implements Serializable {
 
     public String getStatus() {
         return status;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
     }
 }

@@ -35,7 +35,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="2.05"
-            android:text="Xefiok have posted a new video: Nhân ngày đầu năm mới, mời mọi người cùng thử một quẻ bói vui vẻ xem điều..."
+            android:text="Sobin have posted a new video: Nhân ngày đầu năm mới, mời mọi người cùng thử một quẻ bói vui vẻ xem điều..."
             android:textColor="@color/white"
             android:textSize="14sp"/>
         <TextView

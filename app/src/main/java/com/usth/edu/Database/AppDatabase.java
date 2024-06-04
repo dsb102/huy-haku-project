@@ -30,7 +30,7 @@ import java.util.Date;
         version = 1,
         exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
-    private static final String DATABASE_NAME = "JobManagement.db";
+    private static final String DATABASE_NAME = "Sobin.db";
 
     private static final RoomDatabase.Callback CALLBACK = new RoomDatabase.Callback() {
         @Override

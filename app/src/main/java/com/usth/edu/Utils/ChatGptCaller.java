@@ -36,7 +36,7 @@ public class ChatGptCaller {
 
     public static String getPrompt(Date startDate, Date endDate, String title, String description) {
         return "Tôi đang chuẩn bị có một công việc vào lúc " + sdf.format(startDate) + " đến lúc " + sdf.format(endDate) + ", cụ thể tên công việc: " + title + " và mô tả cụ th của công việc: " + description +
-                ". Tôi nên chuẩn bị những gì cho công việc này, hãy giúp tôi mô tả ngắn gọn.";
+                ". Tôi nên chuẩn bị những gì cho công việc này, hãy giúp tôi mô tả ngắn gọn 10 từ.";
     }
 
     public void callChatGpt(Date startDate, Date endDate, String title, String description, OnCallerSuccess callerSuccess) {

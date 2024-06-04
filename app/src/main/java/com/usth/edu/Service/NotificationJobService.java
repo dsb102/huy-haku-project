@@ -58,6 +58,7 @@ public class NotificationJobService extends Service {
         job = jobViewModel.getJobById(jobId);
         id_notification = (int) (notificationModel.getId() + CalendarExtension.ONE_HOUR);
     }
+
     private void sendNotification() {
         Intent intent = new Intent(this, JobDetailActivity.class);
         intent.putExtra(Key.JOB_ID, notificationModel.getJobId());
@@ -68,7 +69,7 @@ public class NotificationJobService extends Service {
         remoteViews.setTextViewText(R.id.tv_app_name, getApplicationContext().getString(R.string.app_name));
         remoteViews.setImageViewResource(R.id.img_notification_priority, GeneralData.getImgPriority(job.getPriority()));
         remoteViews.setTextViewText(R.id.tv_notification_time, CalendarExtension.formatDateTime(notificationModel.getDateOfRecord()));
-        remoteViews.setTextViewText(R.id.tv_content,Extension.setContent(this,job));
+        remoteViews.setTextViewText(R.id.tv_content,Extension.setContent(this,notificationModel.getMessage(), notificationModel.getStatusJob()));
         mBuilder = new NotificationCompat.Builder(this, Key.CHANNEL_NOTIFICATION_JOB)
                 .setSmallIcon(R.drawable.logo_final)
                 .setContentIntent(pendingIntent)

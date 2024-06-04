@@ -22,7 +22,6 @@ import com.usth.edu.Library.Extension;
 import com.usth.edu.Library.GeneralData;
 import com.usth.edu.R;
 import com.usth.edu.Service.NotificationService;
-import com.usth.edu.Utils.ChatGptCaller;
 import com.usth.edu.View.Adapter.ViewPagerAdapter;
 import com.usth.edu.ViewModel.JobViewModel;
 import com.usth.edu.ViewModel.NotificationViewModel;
@@ -46,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         init();
-        setJobPeriodic();
+//        setJobPeriodic();
     }
 
     private void setJobPeriodic() {

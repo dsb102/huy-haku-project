@@ -3,6 +3,8 @@
 
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+
 
     <application
         android:name=".Application.myApplication"
@@ -49,9 +51,11 @@
         <service android:name=".Service.CountUpService" />
         <service android:name=".Service.NotificationService" />
         <service android:name=".Service.NotificationJobService" />
-        <service
-            android:name=".View.Activity.MyWorker"
-            android:permission="android.permission.BIND_JOB_SERVICE" />
+<!--        <service-->
+<!--            android:name=".View.Activity.MyWorker"-->
+<!--            android:permission="android.permission.BIND_JOB_SERVICE" />-->
+        <receiver android:name=".View.Activity.MyAlarmReceiver" />
+
         <receiver
             android:name=".View.Activity.BootReceiver"
             android:enabled="true"

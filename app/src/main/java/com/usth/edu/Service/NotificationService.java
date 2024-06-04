@@ -115,20 +115,20 @@ public class NotificationService extends Service {
         List<Job> jobList = jobViewModel.getListByStatus(status);
         switch (status) {
             case GeneralData.STATUS_COMING:
-                jobList = updateJob(jobList,GeneralData.STATUS_ON_GOING);
-                jobList = updateJob(jobList,GeneralData.STATUS_OVER);
+                jobList = updateJob(jobList, GeneralData.STATUS_ON_GOING);
+                jobList = updateJob(jobList, GeneralData.STATUS_OVER);
                 break;
             case GeneralData.STATUS_ON_GOING:
-                jobList = updateJob(jobList,GeneralData.STATUS_COMING);
-                jobList = updateJob(jobList,GeneralData.STATUS_OVER);
+                jobList = updateJob(jobList, GeneralData.STATUS_COMING);
+                jobList = updateJob(jobList, GeneralData.STATUS_OVER);
                 break;
         }
         return jobList;
     }
 
-    private List<Job> updateJob(List<Job> jobList,int statusTarget) {
-        List<Job> jobs =  Extension.getJobsChange(jobList, statusTarget);
-        if (jobs.size() != 0) {
+    private List<Job> updateJob(List<Job> jobList, int statusTarget) {
+        List<Job> jobs = Extension.getJobsChange(jobList, statusTarget);
+        if (!jobs.isEmpty()) {
             AddNotificationModel(jobs);
             jobViewModel.update(jobs.toArray(new Job[0]));
         }
@@ -154,10 +154,19 @@ public class NotificationService extends Service {
 
     private void AddNotificationModel(List<Job> jobs) {
         for (Job job : jobs) {
+            if (job == null) continue;
             NotificationModel notificationModel = new NotificationModel(job.getId(), job.getStatus(), CalendarExtension.currDate(), GeneralData.STATUS_NOTIFICATION_ACTIVE);
+            notificationModel.setMessage(buildMessage(job));
             notificationViewModel.insert(notificationModel);
             sendNotificationJob(job.getId());
         }
+    }
+
+    private String buildMessage(Job job) {
+        String strStart = this.getString(R.string.notification_job_show) + " " + this.getString(R.string.job);
+        String name = job.getName() + " " + this.getString(GeneralData.getStatus(job.getStatus()));
+        strStart = strStart + " " + name + " ";
+        return strStart + job.getDescription();
     }
 
     private void sendNotificationJob(int jobID) {

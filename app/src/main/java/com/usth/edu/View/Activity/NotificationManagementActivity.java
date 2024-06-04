@@ -43,10 +43,7 @@ public class NotificationManagementActivity extends AppCompatActivity {
             notificationAdapterNew = new NotificationAdapter(this, notificationModels);
             rcv_new.setLayoutManager(new LinearLayoutManager(this));
             rcv_new.setAdapter(notificationAdapterNew);
-
-            imageButton.setOnClickListener(v -> {
-                seenAll(notificationModels);
-            });
+            imageButton.setOnClickListener(v -> seenAll(notificationModels));
         });
         notificationViewModel.geListNotificationByStatus(GeneralData.STATUS_NOTIFICATION_SEEN).observe(this, notificationModels -> {
             notificationAdapterOld = new NotificationAdapter(this, notificationModels);
@@ -56,7 +53,7 @@ public class NotificationManagementActivity extends AppCompatActivity {
     }
 
     private void seenAll( List<NotificationModel> notificationViewModelList) {
-        if (notificationViewModelList.size() > 0) {
+        if (!notificationViewModelList.isEmpty()) {
             for (NotificationModel notificationModel : notificationViewModelList
             ) {
                 notificationModel.setStatus(GeneralData.STATUS_NOTIFICATION_SEEN);

@@ -178,12 +178,12 @@ public class AddJobActivity extends AppCompatActivity implements DatePickerDialo
             if (jobToUpdate == null) {
                 Job job = getJob();
                 job.setStatus(GeneralData.STATUS_COMING);
-                caller.callChatGpt(job.getStartDate(), job.getEndDate(), job.getName(), job.getDescription(), job::setSuggestion);
+//                caller.callChatGpt(job.getStartDate(), job.getEndDate(), job.getName(), job.getDescription(), job::setSuggestion);
                 jobViewModel.insert(job);
                 Toast.makeText(AddJobActivity.this, getString(R.string.add_job_sucess), Toast.LENGTH_LONG).show();
             } else {
                 updateJob();
-                caller.callChatGpt(jobToUpdate.getStartDate(), jobToUpdate.getEndDate(), jobToUpdate.getName(), jobToUpdate.getDescription(), jobToUpdate::setSuggestion);
+//                caller.callChatGpt(jobToUpdate.getStartDate(), jobToUpdate.getEndDate(), jobToUpdate.getName(), jobToUpdate.getDescription(), jobToUpdate::setSuggestion);
                 jobToUpdate.setStatus(GeneralData.STATUS_COMING);
                 jobViewModel.update(jobToUpdate);
                 Toast.makeText(AddJobActivity.this, getString(R.string.update_job_sucess), Toast.LENGTH_LONG).show();

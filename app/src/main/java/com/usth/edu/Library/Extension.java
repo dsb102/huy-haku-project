@@ -157,15 +157,14 @@ public class Extension {
         return str;
     }
 
-    public static Spannable setContent(Context context,Job job) {
+    public static Spannable setContent(Context context, String message, int jobStatus) {
         String strStart = context.getString(R.string.notification_job_show) + " " + context.getString(R.string.job);
         int start = strStart.length() + 1;
-        String name = job.getName() + " " + context.getString(GeneralData.getStatus(job.getStatus()));
+        String name = message + " " + context.getString(GeneralData.getStatus(jobStatus));
         strStart = strStart + " " + name +" ";
-        SpannableString spannable = new SpannableString(strStart +job.getDescription());
-        ForegroundColorSpan foregroundColorSpan = new ForegroundColorSpan(ResourcesCompat.getColor(context.getResources(), GeneralData.getColorStatus(job.getStatus()), null));
+        SpannableString spannable = new SpannableString(strStart);
+        ForegroundColorSpan foregroundColorSpan = new ForegroundColorSpan(ResourcesCompat.getColor(context.getResources(), GeneralData.getColorStatus(jobStatus), null));
         spannable.setSpan(foregroundColorSpan, start, strStart.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         return spannable;
     }
-
 }
