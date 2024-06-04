@@ -18,9 +18,6 @@ import com.usth.edu.Database.DataLocal.DataLocalManager;
 import com.usth.edu.Library.Key;
 import com.usth.edu.R;
 import com.usth.edu.View.Activity.MyAlarmReceiver;
-import com.usth.edu.View.Activity.MyWorker;
-
-import java.util.concurrent.TimeUnit;
 
 public class myApplication extends Application {
 
@@ -52,11 +49,6 @@ public class myApplication extends Application {
         }
     }
 
-//    private void setJobPeriodic() {
-//        PeriodicWorkRequest workRequest = new PeriodicWorkRequest.Builder(MyWorker.class, 5, TimeUnit.MINUTES)
-//                .build();
-//        WorkManager.getInstance(this).enqueueUniquePeriodicWork("ScheduleJobReminder", ExistingPeriodicWorkPolicy.REPLACE, workRequest);
-//    }
 
     private void createChanelNotification() {
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){

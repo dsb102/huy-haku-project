@@ -40,7 +40,6 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
 
     public NotificationAdapter(Context mContext, List<NotificationModel> notificationModels) {
         this.notificationModels = notificationModels;
-        Log.d("SOBIN TEST SIZe", "NotificationAdapter: " + notificationModels.size());
         this.mContext = mContext;
         jobViewModel = new JobViewModel();
         jobViewModel.setData(mContext);
