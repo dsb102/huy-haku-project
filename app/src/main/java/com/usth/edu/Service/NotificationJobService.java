@@ -71,7 +71,7 @@ public class NotificationJobService extends Service {
         remoteViews.setTextViewText(R.id.tv_notification_time, CalendarExtension.formatDateTime(notificationModel.getDateOfRecord()));
         remoteViews.setTextViewText(R.id.tv_content,Extension.setContent(this,notificationModel.getMessage(), notificationModel.getStatusJob()));
         mBuilder = new NotificationCompat.Builder(this, Key.CHANNEL_NOTIFICATION_JOB)
-                .setSmallIcon(R.drawable.logo_final)
+                .setSmallIcon(R.drawable.logo_second)
                 .setContentIntent(pendingIntent)
                 .setAutoCancel(true)
                 .setCustomContentView(remoteViews);

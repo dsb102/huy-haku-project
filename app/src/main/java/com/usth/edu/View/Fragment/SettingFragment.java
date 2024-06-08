@@ -5,11 +5,14 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.usth.edu.Model.Setting;
 import com.usth.edu.R;
@@ -22,7 +25,7 @@ public class SettingFragment extends Fragment {
 
     private String[] Titles ={"Feedback", "About"};
     private String[] Contents = {"Setting Feedback", "All about you"};
-    private  int[] Images = {R.drawable.ic_baseline_settings_24, R.drawable.ic_baseline_settings_24};
+    private int[] Images = {R.drawable.ic_baseline_settings_24, R.drawable.ic_baseline_settings_24};
 
     @Nullable
     @Override
@@ -40,23 +43,43 @@ public class SettingFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        InnitView(view);
+        initView(view);
     }
 
-    private void InnitView(View view) {
-        //((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Cài đặt");
+    private void initView(View view) {
         ArrayList<Setting> settings = new ArrayList<>();
-        for (int i =0 ; i< Titles.length; i++){
+        for (int i = 0; i < Titles.length; i++) {
             settings.add(new Setting(Titles[i], Contents[i], Images[i]));
         }
         SettingAdapter adapter = new SettingAdapter(settings);
         ListView lv = view.findViewById(R.id.lv_settings);
         lv.setAdapter(adapter);
+
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                if (position == 0) { // Check if "Feedback" item is clicked
+                    navigateToFeedbackFragment();
+                }
+            }
+        });
     }
+
+    private void navigateToFeedbackFragment() {
+        FragmentManager fragmentManager = getParentFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.fragment_container, new FeedbackFragment());
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
+        View container = getView().findViewById(R.id.fragment_container);
+        container.setVisibility(View.VISIBLE);
+    }
+
     @Override
     public void onResume() {
         super.onResume();
     }
+
     @Override
     public void onStop() {
         super.onStop();

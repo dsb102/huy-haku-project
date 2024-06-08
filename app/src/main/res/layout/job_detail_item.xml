@@ -124,7 +124,7 @@
                             <TextView
                                 android:layout_width="50dp"
                                 android:layout_height="wrap_content"
-                                android:text="Dự kiến :"
+                                android:text="EstimatedTime :"
                                 android:textColor="@color/white"
                                 android:textSize="12sp" />
 
@@ -148,7 +148,7 @@
                             <TextView
                                 android:layout_width="50dp"
                                 android:layout_height="wrap_content"
-                                android:text="Thực tế :"
+                                android:text="ActualTime :"
                                 android:textColor="@color/white"
                                 android:textSize="12sp" />
 

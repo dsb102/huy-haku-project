@@ -77,7 +77,7 @@ public class MyWorker extends Worker {
         PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_CANCEL_CURRENT);
         NotificationManager notificationManager = (NotificationManager) getApplicationContext().getSystemService(Context.NOTIFICATION_SERVICE);
         NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext(), CHANNEL_ID)
-                .setSmallIcon(R.drawable.logo_final)
+                .setSmallIcon(R.drawable.logo_second)
                 .setContentIntent(pendingIntent)
                 .setContentTitle(title)
                 .setContentText(message)

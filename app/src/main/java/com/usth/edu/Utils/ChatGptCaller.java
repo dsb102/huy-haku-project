@@ -28,15 +28,15 @@ public class ChatGptCaller {
 
     private static final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
-    private static final String API_KEY = "sk-proj-dAoJrkWtCR0udk5KFwHsT3BlbkFJaBuhWNPAjexGYXtsyoS1";
+    private static final String API_KEY = "sk-proj-fQGJV1oKdBk9lNG0WC23T3BlbkFJZ4iEtEXe0DUUJ6vljCif";
 
     public static final MediaType JSON
             = MediaType.get("application/json; charset=utf-8");
     OkHttpClient client = new OkHttpClient();
 
     public static String getPrompt(Date startDate, Date endDate, String title, String description) {
-        return "Tôi đang chuẩn bị có một công việc vào lúc " + sdf.format(startDate) + " đến lúc " + sdf.format(endDate) + ", cụ thể tên công việc: " + title + " và mô tả cụ th của công việc: " + description +
-                ". Tôi nên chuẩn bị những gì cho công việc này, hãy giúp tôi mô tả ngắn gọn 10 từ.";
+        return "I'm about to start a job from " + sdf.format(startDate) + " to " + sdf.format(endDate) + ", Specific job title: " + title + " and detailed description of the job: " + description +
+                ". What should I prepare for this job? Please help me briefly describe it in 100 words.";
     }
 
     public void callChatGpt(Date startDate, Date endDate, String title, String description, OnCallerSuccess callerSuccess) {

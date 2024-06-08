@@ -58,7 +58,7 @@ public class AddJobDetailActivity extends AppCompatActivity {
         edt_estimate_time = findViewById(R.id.edt_dlg_job_detail_estimate_time);
 
         spn_priority = findViewById(R.id.spiner_jobdetail_priority);
-        String[] priorities = {"Quan trọng", "Không quan trọng"};
+        String[] priorities = {"Important", "Not important"};
         ArrayAdapter<String> adapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_spinner_item, priorities);
         adapter.setDropDownViewResource(android.R.layout.simple_list_item_single_choice);
         spn_priority.setAdapter(adapter);

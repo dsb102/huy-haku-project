@@ -71,7 +71,7 @@ public class JobFragment extends Fragment {
         });
 
         if(jobs == null )
-            Toast.makeText(mContext,"Đã xảy ra lỗi vui lòng kiểm tra lại",Toast.LENGTH_LONG).show();
+            Toast.makeText(mContext,"An error occurred, please check again!",Toast.LENGTH_LONG).show();
         try{
             jobs.observe(requireActivity(), jobs -> {
                 jobAdapter = new JobAdapter(mContext, jobViewModel);

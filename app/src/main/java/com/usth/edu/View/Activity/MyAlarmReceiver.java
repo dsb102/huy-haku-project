@@ -69,7 +69,7 @@ public class MyAlarmReceiver extends BroadcastReceiver {
         PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_CANCEL_CURRENT);
         NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context, CHANNEL_ID)
-                .setSmallIcon(R.drawable.logo_final)
+                .setSmallIcon(R.drawable.logo_second)
                 .setContentIntent(pendingIntent)
                 .setContentTitle(title)
                 .setContentText(message)
