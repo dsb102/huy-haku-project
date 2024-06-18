@@ -30,7 +30,7 @@ public class SettingFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v= inflater.inflate(R.layout.setting_fragment, container, false);
+        View v = inflater.inflate(R.layout.setting_fragment, container, false);
         return v;
     }
 
@@ -55,24 +55,29 @@ public class SettingFragment extends Fragment {
         ListView lv = view.findViewById(R.id.lv_settings);
         lv.setAdapter(adapter);
 
+        FeedbackFragment feedbackFragment = new FeedbackFragment();
+        AboutFragment aboutFragment = new AboutFragment();
+
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if (position == 0) { // Check if "Feedback" item is clicked
-                    navigateToFeedbackFragment();
+                    navigateToFeedbackFragment(feedbackFragment);
+                } if (position == 1) {
+                    navigateToFeedbackFragment(aboutFragment);
                 }
             }
         });
     }
 
-    private void navigateToFeedbackFragment() {
+    private void navigateToFeedbackFragment(Fragment fragment) {
         FragmentManager fragmentManager = getParentFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.fragment_container, new FeedbackFragment());
+        fragmentTransaction.replace(R.id.fragment_container, fragment);
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
-        View container = getView().findViewById(R.id.fragment_container);
-        container.setVisibility(View.VISIBLE);
+//        View container = getView().findViewById(R.id.fragment_container);
+//        container.setVisibility(View.VISIBLE);
     }
 
     @Override
