@@ -147,9 +147,13 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
-        finish();
+        if (getSupportFragmentManager().getBackStackEntryCount() > 0) {
+            getSupportFragmentManager().popBackStack();
+        } else {
+            super.onBackPressed();
+        }
     }
+
     public void updateNotification(){
         NotificationViewModel notificationViewModel = new NotificationViewModel();
         notificationViewModel.setData(this);
